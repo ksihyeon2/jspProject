@@ -53,6 +53,19 @@
 			오늘 날짜3 : <fmt:formatDate value="${today}" pattern="yyyy-MM-dd"/><br />
 			오늘 시간 : <fmt:formatDate value="${today}" pattern="hh : mm : ss"/><br />
 			오늘 시간 : <fmt:formatDate value="${today}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/><br />
+			<hr />
+			
+			5. 국가별설정(로케일)<br />
+			톰켓서버의 기본 로케일 : <%= response.getLocale() %><br />
+			톰켓서버의 기본 로케일 변경(미국식) : <fmt:setLocale value="en_US" />
+																	<fmt:formatNumber value="${won1}" type="currency" /><br />W
+			<hr />
+			
+			6. URL 이동 : location.href=""; &nbsp;&nbsp;&nbsp;&nbsp;  ->  &nbsp;&nbsp;redirect : core라이브러리에 존재함<br />
+			<%-- <c:redirect url="jstl6.jsp" /> 버튼을 누르지 않아도 바로 이동됨--%>
+			<hr />
+			
+			7. import : core 라이버르리에 존재  <c:import url="/include/bs4.jsp" /> 
 		</div>
 	</div>
 	<p><br /></p>

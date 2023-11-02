@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ex4_jstl.jsp</title>
+  <title>ex4_jstl2.jsp</title>
   <jsp:include page="/include/bs4.jsp" />
   <script>
     'use strict';
@@ -14,18 +14,12 @@
     let pictureArray = [];
     let pictureNameArray = [];
     
-    /* 콤보상자에서 그림을 선택하면 demoImg에 출력시키기 */
     function pictureChange() {
-    	let picture = myform.picture.value;
-    	let str = '<img src="${ctp}/images/'+picture+'" width="300px" />&nbsp;';
-    	demoImg.innerHTML = str;
-    	
-    	myform.pictureName.value = "";
-    	myform.pictureName.focus();
+    	let img = myform.picture.value;
+    	location.href = "ex4_jstl.jsp?img="+img;
     }
     
-    /* 선택된 그림을 배열에 저장하기 */
-    function pictureSave() {
+    function pictureCheck() {
     	let picture = myform.picture.value;
     	let pictureName = myform.pictureName.value.trim();
     	
@@ -37,6 +31,7 @@
     		pictureArray.push(picture);
     		pictureNameArray.push(pictureName);
     		alert("선택하신 그림을 저장하였습니다.");
+    		myform.pictureName.value = "";
     	}
     }
     
@@ -56,6 +51,7 @@
     }
     
     function pictureReset() {
+    	// location.reload();
     	
     	pictureArray.splice(0,pictureArray.length);
     	pictureNameArray.splice(0,pictureNameArray.length);
@@ -76,17 +72,22 @@
   <h2>그림 골라서 저장하여 출력하기</h2>
   <form name="myform">
     <div>그림고르기
+      <c:set var="img" value="${param.img}"/>
       <select name="picture" onchange="pictureChange()">
         <c:forEach var="i" begin="1" end="5">
-        	<option>${i}.jpg</option>
+          <c:set var="tempImg" value="${i}.jpg"/>
+        	<option <c:if test="${tempImg==img}">selected</c:if>>${i}.jpg</option>
         </c:forEach>
       </select>
     </div>
-    <div id="demoImg"></div>
+    <div>
+      <c:if test="${empty img}"><img src="${ctp}/images/1.jpg" width="150px" /></c:if>
+      <c:if test="${!empty img}"><img src="${ctp}/images/${img}" width="150px" /></c:if>
+    </div>
     <hr/>
     <div>그림이름짓기 :
       <input type="text" name="pictureName" autofocus />
-      <input type="button" value="그림정보저장" onclick="pictureSave()" class="btn btn-success" />
+      <input type="button" value="그림정보저장" onclick="pictureCheck()" class="btn btn-success" />
       <input type="button" value="저장그림모두보기" onclick="pictureView()" class="btn btn-primary" />
       <input type="button" value="저장그림모두제거" onclick="pictureReset()" class="btn btn-danger" />
     </div>

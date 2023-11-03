@@ -16,3 +16,5 @@ insert into login (mid,pwd,name) values ('hkd1234','1234','홍길동');
 insert into login values (default, 'admin', '1234', '관리자', default, default, default);
 
 select * from login;
+
+drop table login;

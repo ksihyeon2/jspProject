@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%-- < %@jsp:include page="/include/memberCheck.jsp" %> --%>
 <%@ include file="/include/memberCheck.jsp" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -29,7 +28,7 @@
     		alert("검색할 아이디를 입력하세요");
     	}
     	else {
-    		location.href = '${ctp}/database/memberSearch?mid='+mid;
+    		location.href = '${ctp}/MemberSearch.lo?mid='+mid;
     	}
     }
     
@@ -45,6 +44,7 @@
   </script>
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container text-center">
   <h2>회원 메일 화면</h2>
@@ -59,8 +59,8 @@
   <hr/>
   <div class="row" style="font-size:10px">
     <div class="col"><a href="javascript:searchCheck()" class="btn btn-success">개별조회</a></div>
-    <div class="col"><a href="${ctp}/database/memberList" class="btn btn-primary">전체조회</a></div>
-    <div class="col"><a href="${ctp}/study/database/update.jsp" class="btn btn-info">정보수정</a></div>
+    <div class="col"><a href="${ctp}/login/memberList.lo" class="btn btn-primary">전체조회</a></div>
+    <div class="col"><a href="${ctp}/login/update.lo" class="btn btn-info">정보수정</a></div>
     <div class="col"><a href="javascript:logoutCheck()" class="btn btn-warning">로그아웃</a></div>
     <div class="col"><a href="javascript:deleteCheck()" class="btn btn-danger">회원탈퇴</a></div>
   </div>
@@ -68,5 +68,6 @@
   <div id="demo"></div>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

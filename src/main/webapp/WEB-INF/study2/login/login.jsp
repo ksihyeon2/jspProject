@@ -30,9 +30,10 @@
   </style>
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <form name="loginForm" method="post" action="${ctp}/login/loginOk.lo" >
+  <form name="loginForm" method="post" action="${ctp}/loginOk.lo" >
   	<table class="table table-bordered">
   	  <tr>
   	    <td colspan="2" class="text-center"><h2>회원 로그인</h2></td>
@@ -57,5 +58,6 @@
   </form>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

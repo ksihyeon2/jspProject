@@ -51,6 +51,7 @@ public class GuestVO {
 	public void setHostIp(String hostIp) {
 		this.hostIp = hostIp;
 	}
+	
 	@Override
 	public String toString() {
 		return "GuestVO [idx=" + idx + ", name=" + name + ", content=" + content + ", email=" + email + ", homePage="

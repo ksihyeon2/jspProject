@@ -13,7 +13,7 @@
     'use strict';
     if(${empty vo.mid}) {
     	alert("검색된 아이디가 없습니다.");
-    	location.href = "${ctp}/login/memberMain.lo";
+    	location.href = "${ctp}/memberMain.lo";
     }
   </script>
   <style>
@@ -56,7 +56,7 @@
     </c:if>
     <tr>
       <td colspan="2">
-        <input type="button" value="돌아가기" onclick="location.href='${ctp}/login/memberMain.lo';" class="btn btn-success" />
+        <input type="button" value="돌아가기" onclick="location.href='${ctp}/memberMain.lo';" class="btn btn-success" />
       </td>
     </tr>
   </table>

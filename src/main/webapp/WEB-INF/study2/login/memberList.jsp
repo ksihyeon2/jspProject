@@ -12,6 +12,7 @@
   <jsp:include page="/include/bs4.jsp" />
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container text-center">
   <h2 class="mb-4">전 체 회 원 리 스 트</h2>
@@ -38,9 +39,10 @@
   </table>
   <br/>
   <div>
-    <a href="${ctp}/login/memberMain.lo" class="btn btn-success">돌아가기</a>
+    <a href="memberMain.lo" class="btn btn-success">돌아가기</a>
   </div>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

@@ -50,7 +50,7 @@
   	    <td colspan="2" class="text-center">
   	      <input type="submit" value="로그인" class="btn btn-success mr-2" />
   	      <input type="reset" value="다시입력" class="btn btn-warning mr-2" />
-  	      <input type="button" value="회원가입" onclick="location.href='${ctp}/login/join.lo';" class="btn btn-info mr-3" />
+  	      <input type="button" value="회원가입" onclick="location.href='join.lo';" class="btn btn-info mr-3" />
   	      <input type="checkbox" name="idSave" checked /> 아이디저장
   	    </td>
   	  </tr>

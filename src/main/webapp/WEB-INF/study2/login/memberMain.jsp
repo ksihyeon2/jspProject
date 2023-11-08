@@ -28,18 +28,18 @@
     		alert("검색할 아이디를 입력하세요");
     	}
     	else {
-    		location.href = '${ctp}/MemberSearch.lo?mid='+mid;
+    		location.href = 'MemberSearch.lo?mid='+mid;
     	}
     }
     
     function logoutCheck() {
     	let ans = confirm("로그아웃 하시겠습니까?");
-    	if(ans) location.href = "${ctp}/login/logout.lo";
+    	if(ans) location.href = "logout.lo";
     }
     
     function deleteCheck() {
     	let ans = confirm("회원 탈퇴 하시겠습니까?");
-    	if(ans) location.href = "${ctp}/login/deleteOk.lo";
+    	if(ans) location.href = "deleteOk.lo";
 		}
   </script>
 </head>
@@ -59,8 +59,8 @@
   <hr/>
   <div class="row" style="font-size:10px">
     <div class="col"><a href="javascript:searchCheck()" class="btn btn-success">개별조회</a></div>
-    <div class="col"><a href="${ctp}/login/memberList.lo" class="btn btn-primary">전체조회</a></div>
-    <div class="col"><a href="${ctp}/login/update.lo" class="btn btn-info">정보수정</a></div>
+    <div class="col"><a href="memberList.lo" class="btn btn-primary">전체조회</a></div>
+    <div class="col"><a href="update.lo" class="btn btn-info">정보수정</a></div>
     <div class="col"><a href="javascript:logoutCheck()" class="btn btn-warning">로그아웃</a></div>
     <div class="col"><a href="javascript:deleteCheck()" class="btn btn-danger">회원탈퇴</a></div>
   </div>

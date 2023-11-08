@@ -22,7 +22,7 @@ public class UpdateOkCommand implements LoginInterface {
 		LoginVO vo = dao.getLoginCheck(mid, pwd);
 		if(vo.getMid() == null) {
 			request.setAttribute("msg", "비밀번호 오류. 확인 후 다시 시도해주세요.");
-			request.setAttribute("url", request.getContextPath()+"/login/update.lo");
+			request.setAttribute("url", "update.lo");
 		} 
 		else {
 			vo = new LoginVO();
@@ -36,10 +36,10 @@ public class UpdateOkCommand implements LoginInterface {
 				HttpSession session = request.getSession();
 				session.setAttribute("sName", name);
 				request.setAttribute("msg", name+"님 회원 정보가 수정되셨습니다.");
-				request.setAttribute("url", request.getContextPath()+"/login/memberMain.lo");
+				request.setAttribute("url", "memberMain.lo");
 			} else {
-				request.setAttribute("msg", name+"회원정보 수정 실패. \\\\n 다시 시도해주세요.");
-				request.setAttribute("url", request.getContextPath()+"/login/update.lo");
+				request.setAttribute("msg", name+"회원정보 수정 실패. \\n 다시 시도해주세요.");
+				request.setAttribute("url", "update.lo");
 			}
 		}
 	}

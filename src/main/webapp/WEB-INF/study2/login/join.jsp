@@ -17,9 +17,10 @@
   </style>
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container text-center">
-	<form name="myform" method="post" action="${ctp}/login/joinOk.lo">
+	<form name="myform" method="post" action="joinOk.lo">
 	  <h2>회 원 가 입</h2>
 	  <table class="table table-bordered">
 	    <tr>
@@ -38,12 +39,13 @@
 	      <td colspan="2">
 	        <input type="submit" value="가입하기" class="btn btn-success" />
 	        <input type="reset" value="다시입력" class="btn btn-info" />
-	        <input type="button" value="돌아가기" onclick="location.href='${ctp}/login/login.lo';" class="btn btn-danger" />
+	        <input type="button" value="돌아가기" onclick="location.href='login.lo';" class="btn btn-danger" />
 	      </td>
 	    </tr>
 	  </table>
   </form>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

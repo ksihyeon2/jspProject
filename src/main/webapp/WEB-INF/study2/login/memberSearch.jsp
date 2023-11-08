@@ -13,7 +13,7 @@
     'use strict';
     if(${empty vo.mid}) {
     	alert("검색된 아이디가 없습니다.");
-    	location.href = "${ctp}/memberMain.lo";
+    	location.href = "memberMain.lo";
     }
   </script>
   <style>
@@ -24,6 +24,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container text-center">
   <h2>개별 회원 조회</h2>
@@ -56,11 +57,12 @@
     </c:if>
     <tr>
       <td colspan="2">
-        <input type="button" value="돌아가기" onclick="location.href='${ctp}/memberMain.lo';" class="btn btn-success" />
+        <input type="button" value="돌아가기" onclick="location.href='memberMain.lo';" class="btn btn-success" />
       </td>
     </tr>
   </table>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

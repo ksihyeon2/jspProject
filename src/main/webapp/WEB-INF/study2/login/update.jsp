@@ -31,10 +31,11 @@
   </style>
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container text-center">
   <h2>회원 정보 수정</h2>
-  <form name="myform" method="post" action="${ctp}/login/updateOk.lo" >
+  <form name="myform" method="post" action="updateOk.lo" >
   <table class="table table-bordered">
     <tr>
       <th>아이디</th>
@@ -45,7 +46,7 @@
       <th>성명</th>
       <td><input type="text" name="name" id="name" value="${sName}" class="form-control" /></td>
     </tr>
-    <tr>
+    <tr>	
       <th>비밀번호 확인</th>
       <td><input type="password" name="pwd" id="pwd" class="form-control"/></td>
     </tr>
@@ -53,12 +54,13 @@
       <td colspan="2">
         <input type="button" value="수정하기" onclick="fCheck()" class="btn btn-success" />
         <input type="reset" value="다시입력" class="btn btn-warning" />
-        <input type="button" value="돌아가기" onclick="location.href='${ctp}/login/memberMain.lo';" class="btn btn-danger" />
+        <input type="button" value="돌아가기" onclick="location.href='memberMain.lo';" class="btn btn-danger" />
       </td>
     </tr>
   </table>
   </form>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

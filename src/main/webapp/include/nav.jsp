@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	int level = session.getAttribute("sLevel") == null ? 99 : (int)session.getAttribute("sLevel");
+	pageContext.setAttribute("level", level);
+%>
 <c:set var="ctp" value="${pageContext.request.contextPath}" />
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	 <!-- 햄버거 버튼 -->
@@ -12,25 +16,42 @@
 	     <li class="nav-item">
 	       <a class="nav-link" href="${ctp}/GuestList">Guest</a>
 	     </li>
+	     <c:if test="${level <= 4}">
+		     <li class="nav-item">
+		       <a class="nav-link" href="${ctp}/BoardList">Board</a>
+		      </li>
+		     <li class="nav-item">
+		       <a class="nav-link" href="${ctp}/PdsList">Pds</a>
+		     </li>    
+		     <li class="nav-item ml-3 mr-3">
+		     	 <div class="dropdown">
+					   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Study1</button>
+					   <div class="dropdown-menu">
+					     <a class="dropdown-item" href="${ctp}/study/password/passForm.jsp">암호화 연습</a>
+					     <a class="dropdown-item" href="${ctp}/mapping/test1">디렉토리패턴 매핑 연습</a>
+					     <a class="dropdown-item" href="${ctp}/mapping/test5.do">확장자 패턴</a>
+					     <a class="dropdown-item" href="${ctp}/mapping2/test5.re">확장자 패턴2</a>
+					     <a class="dropdown-item" href="${ctp}/login/login.lo">로그인 연습</a>
+					     <a class="dropdown-item" href="ajaxTest1.st">AJax 연습1</a>
+					     <a class="dropdown-item" href="userList.us">AJax 연습2</a>
+					     <a class="dropdown-item" href="login.alo">AJax연습3</a>
+					     <a class="dropdown-item" href="uuidProcess.st">UUID연습</a>
+					   </div>
+					 </div>
+		     </li>  
+		    </c:if>  
 	     <li class="nav-item">
-	       <a class="nav-link" href="${ctp}/BoardList">Board</a>
-	      </li>
-	     <li class="nav-item">
-	       <a class="nav-link" href="${ctp}/PdsList">Pds</a>
+	     	 <c:if test="${level > 4}">
+	      	 <a class="nav-link" href="memberLogin.mem">Login</a>	     	 
+	     	 </c:if>
+	     	 <c:if test="${level <= 4}">
+	      	 <a class="nav-link" href="memberLogout.mem">LogOut</a>	     	 
+	     	 </c:if>
 	     </li>    
 	     <li class="nav-item">
-	     	 <div class="dropdown">
-				   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Study1</button>
-				   <div class="dropdown-menu">
-				     <a class="dropdown-item" href="${ctp}/study/password/passForm.jsp">암호화 연습</a>
-				     <a class="dropdown-item" href="${ctp}/mapping/test1">디렉토리패턴 매핑 연습</a>
-				     <a class="dropdown-item" href="${ctp}/mapping/test5.do">확장자 패턴</a>
-				     <a class="dropdown-item" href="${ctp}/mapping2/test5.re">확장자 패턴2</a>
-				     <a class="dropdown-item" href="${ctp}/login/login.lo">로그인 연습</a>
-				     <a class="dropdown-item" href="ajaxTest1.st">AJax 연습1</a>
-				     <a class="dropdown-item" href="userList.us">AJax 연습2</a>
-				   </div>
-				 </div>
+	       <c:if test="${level > 4}">
+	       	<a class="nav-link" href="memberJoin.mem">Join</a>
+	       </c:if>
 	     </li>    
 	  </ul>
 	</div>  

@@ -14,4 +14,4 @@ insert into user values (default, 'admin', '관리자', 40, '서울');
 insert into user values (default, 'hkd1234', '홍길동', 22, '청주');
 insert into user values (default, 'kms1234', '김말숙', 31, '제주');
 
-select * from user;
+select * from login;

@@ -47,6 +47,20 @@
 <p><br/></p>
 <div class="container">
   <h2>전체 회원 리스트</h2>
+  <table class="table">
+  	<tr>
+  		<td>
+  			<div>등급별 검색
+  				<select>
+  					<option>관리자</option>
+  					<option>준회원</option>
+  					<option>정회원</option>
+  					<option>우수회원</option>
+  				</select>
+  			</div>
+  		</td>
+  	</tr>
+  </table>
   <table class="table table-hover text-center">
   	<tr class="table-dark text-dark">
   		<th>번호</th>

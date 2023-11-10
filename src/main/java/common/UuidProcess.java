@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet ("/uuidProcess")
-public class UuidProcess extends HttpServlet{
+@SuppressWarnings("serial")
+@WebServlet("/uuidProcess")
+public class UuidProcess extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UUID uid = UUID.randomUUID();

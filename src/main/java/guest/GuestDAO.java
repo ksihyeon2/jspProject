@@ -138,4 +138,9 @@ public class GuestDAO {
 		}
 		return totRecCnt;
 	}
+
+	public ArrayList<GuestVO> getMemberSearch(String mid, String name, String nickName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

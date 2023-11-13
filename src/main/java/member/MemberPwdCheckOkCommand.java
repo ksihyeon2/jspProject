@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import common.SecurityUtil;
 
-public class memberPwdCheckOkCommand implements MemberInterface {
+public class MemberPwdCheckOkCommand implements MemberInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

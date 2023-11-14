@@ -47,26 +47,29 @@
     	location.href = "adminMemberList.ad?level="+level;
     }
     
-    // 탈퇴 신청 30일 경과 회원 삭제
+    // 탈퇴 신청회원 실제로 제거하기
     function memberDeleteOk(idx) {
     	let ans = confirm("선택된 회원을 삭제하시겠습니까?");
-    	
-    	if(!ans) {
-    		return false;
-    	}
+    	if(!ans) return false;
     	
     	$.ajax({
-    		url : "memberDeleteOk.ad",
-    		type: "post",
-    		data : {idx:idx},
-    		success : function() {
-    			alert("회원 삭제 완료");
+    		url  : "memberDelelteOk.mem",
+    		type : "post",
+    		data : {idx : idx},
+    		success:function() {
+    			alert("회원 삭제 완료!!");
     			location.reload();
     		},
     		error : function() {
-    			alert("전송 오류");
+    			alert("전송 오류~~");
     		}
     	});
+    }
+    
+    // 페이지 사이즈 지정하기
+    function pageSizeCheck() {
+    	let pageSize = $("#pageSize").val();
+    	location.href = "adminMemberList.ad?level=${level}&pageSize="+pageSize;
     }
   </script>
 </head>
@@ -74,7 +77,7 @@
 <p><br/></p>
 <div class="container">
   <h2 class="text-center">${strLevel} 리스트</h2>
-  <table class="table">
+  <table class="table table-borderless m-0 p-0">
     <tr>
       <td>
         <div>등급별검색
@@ -85,6 +88,17 @@
             <option value="2"  ${level == 2 ? "selected" : ""}>정회원</option>
             <option value="3"  ${level == 3 ? "selected" : ""}>우수회원</option>
           </select>
+        </div>
+      </td>
+      <td class="text-right">
+        <div>
+          <select name="pageSize" id="pageSize" onchange="pageSizeCheck()">
+            <option value="3"  ${pageSize == 3? "selected" : ""}>3</option>
+            <option value="5"  ${pageSize == 5 ? "selected" : ""}>5</option>
+            <option value="10" ${pageSize == 10 ? "selected" : ""}>10</option>
+            <option value="15" ${pageSize == 15 ? "selected" : ""}>15</option>
+            <option value="20" ${pageSize == 20 ? "selected" : ""}>20</option>
+          </select> 건
         </div>
       </td>
     </tr>
@@ -103,18 +117,15 @@
     <c:forEach var="vo" items="${vos}" varStatus="st">
       <tr>
         <td>${curScrStartNo}</td>
-        <td>
-        	<c:if test="${vo.userInfor == '공개'}"><a href="adminMemberInfor.ad?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}&level=${level}">${vo.mid}</a></c:if>
-        	<%-- <c:if test="${vo.userInfor == '공개'}"><a href="adminMemberInfor.ad?idx=${vo.idx}">${vo.mid}</a></c:if> --%>
-        	<c:if test="${vo.userInfor == '비공개'}">${vo.mid}</c:if>
-        </td>
+        <td><a href="adminMemberInfor.ad?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}&level=${level}">${vo.mid}</a></td>
+        <%-- <td><a href="adminMemberInfor.ad?idx=${vo.idx}">${vo.mid}</a></td> --%>
         <td>${vo.nickName}</td>
         <td>${vo.name}</td>
         <td>${vo.userInfor}</td>
         <td>${vo.todayCnt}</td>
         <td>
           <c:if test="${vo.userDel == 'OK'}"><font color="red"><b>탈퇴신청</b></font>
-          		<c:if test="${vo.deleteDiff >= 30}">(<a href="javascript:memberDeleteOk(${vo.idx})" title="30일 경과 회원 삭제">X</a>)</c:if>
+            <c:if test="${vo.deleteDiff >= 30}">(<a href="javascript:memberDeleteOk(${vo.idx})" title="30일경과">x</a>)</c:if>
           </c:if>
           <c:if test="${vo.userDel != 'OK'}">활동중</c:if>
         </td>

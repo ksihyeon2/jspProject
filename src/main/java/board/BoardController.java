@@ -48,13 +48,8 @@ public class BoardController extends HttpServlet{
 			command.execute(request, response);
 			return;
 		}
-		else if(com.equals("/boardGoodCheckPlus")) {
-			command = new BoardGoodCheckPlusCommand();
-			command.execute(request, response);
-			return;
-		}
-		else if(com.equals("/boardGoodCheckMinus")) {
-			command = new BoardGoodCheckMinusCommand();
+		else if(com.equals("/boardGoodCheckPlusMinus")) {
+			command = new BoardGoodCheckPlusMinusCommand();
 			command.execute(request, response);
 			return;
 		}
@@ -72,6 +67,11 @@ public class BoardController extends HttpServlet{
 			command = new BoardDeleteCommand();
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
+		}
+		else if(com.equals("/boardSearch")) {
+			command = new BoardSearchCommand();
+			command.execute(request, response);
+			viewPage += "/boardSearchList.jsp";
 		}
 		
 		request.getRequestDispatcher(viewPage).forward(request, response);

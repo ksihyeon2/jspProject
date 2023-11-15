@@ -40,10 +40,13 @@
 		/* 좋아요 증가(중복 허용) */
 		function goodCheckPlus() {
 			$.ajax({
-				url : "boardGoodCheckPlus.bo",
+				url : "boardGoodCheckPlusMinus.bo",
 				type : "post",
-				data : {idx:${vo.idx}},
-				success : function(res) {
+				data : {
+					idx:${vo.idx},
+					goodCnt : +1
+			},
+				success : function() {
 						location.reload();
 				},
 				error : function() {
@@ -55,10 +58,13 @@
 		/* 좋아요 감소(중복 허용) */
 		function goodCheckMinus() {
 			$.ajax({
-				url : "boardGoodCheckMinus.bo",
+				url : "boardGoodCheckPlusMinus.bo",
 				type : "post",
-				data : {idx:${vo.idx}},
-				success : function(res) {
+				data : {
+					idx:${vo.idx},
+					goodCnt : -1
+			},
+				success : function() {
 						location.reload();
 				},
 				error : function() {
@@ -120,7 +126,8 @@
 			</tr>
 			<tr>
 				<td colspan="4" class="text-center">
-					<input type="button" value="돌아가기" onclick="location.href='boardList.bo?pag=${pag}&pageSize=${pageSize}';" class="btn btn-info" /> &nbsp;
+					<c:if test="${flag != 'search' }"><input type="button" value="돌아가기" onclick="location.href='boardList.bo?pag=${pag}&pageSize=${pageSize}';" class="btn btn-info" /> &nbsp;</c:if>
+					<c:if test="${flag == 'search' }"><input type="button" value="돌아가기" onclick="location.href='boardSearch.bo?pag=${pag}&pageSize=${pageSize}&search=${search}&searchString=${searchString}';" class="btn btn-info" /> &nbsp;</c:if>
 					<c:if test="${vo.mid == sMid || sLevel == 0}">
 						<c:if test="${vo.mid == sMid}">
 							<input type="button" value="수정하기" onclick="location.href='boardUpdate.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-success" /> &nbsp;
@@ -129,6 +136,20 @@
 					</c:if>
 				</td>
 			</tr>
+		</table>
+		<br />
+		<!-- 이전글/다음글 처리 -->
+		<table class="table table-borderless">
+	    <tr>
+	      <td>
+	      	<c:if test="${!empty nextVo.title}">
+	        	<a href="boardContent.bo?idx=${nextVo.idx}&pag=${pag}&pageSize=${pageSize}">다음글 : ${nextVo.title}</a><br/>
+	       	</c:if>
+	       	<c:if test="${!empty preVo.title}">
+	        	<a href="boardContent.bo?idx=${preVo.idx}&pag=${pag}&pageSize=${pageSize}">이전글 : ${preVo.title}</a><br/>
+	     		</c:if>
+	      </td>
+	    </tr>
 		</table>
 	</div>
 	<p><br /></p>

@@ -14,7 +14,8 @@ public class BoardVO {
 	private String wDate;
 	private int good;
 	
-	
+	private int hour_diff;  // 게시글 24시간동안 new.gif 이미지 표시를 위한 변수
+
 	public int getIdx() {
 		return idx;
 	}
@@ -87,10 +88,16 @@ public class BoardVO {
 	public void setGood(int good) {
 		this.good = good;
 	}
+	public int getHour_diff() {
+		return hour_diff;
+	}
+	public void setHour_diff(int hour_diff) {
+		this.hour_diff = hour_diff;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [idx=" + idx + ", mid=" + mid + ", nickName=" + nickName + ", title=" + title + ", email=" + email
 				+ ", homePage=" + homePage + ", content=" + content + ", readNum=" + readNum + ", hostIp=" + hostIp
-				+ ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + "]";
+				+ ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + ", hour_diff=" + hour_diff + "]";
 	}
 }

@@ -36,11 +36,11 @@ public class BoardDAO {
 		pstmtClose();
 	}
 
-//	게시판 전체 리스트
+//	게시판 전체 리스트(새 게시물 표시하기 위해 시간까지 구해오기)
 	public ArrayList<BoardVO> getBoardList(int startIndexNo, int pageSize) {
 		ArrayList<BoardVO> vos = new ArrayList<BoardVO>();
 		try {
-			sql = "select * from board order by idx desc limit ?,?";
+			sql = "select *, timestampdiff(hour,wDate, now()) as hour_diff from board order by idx desc limit ?,?";
 //			limit 시작, 건 수
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startIndexNo);
@@ -60,6 +60,8 @@ public class BoardDAO {
 				vo.setOpenSw(rs.getString("openSw"));
 				vo.setwDate(rs.getString("wDate"));
 				vo.setGood(rs.getInt("good"));
+				
+				vo.setHour_diff(rs.getInt("hour_diff"));
 				
 				vos.add(vo);
 			}
@@ -173,27 +175,13 @@ public class BoardDAO {
 		return res;
 	}
 //	좋아요 수 1씩 증가 시키기(중복 허용)
-	public int setBoardGoodCheckPlus(int idx) {
+	public int setBoardGoodCheckPlusMinus(int idx, int goodCnt) {
 		int res = 0;
 		try {
-			sql = "update board set good = good+1 where idx=?";
+			sql = "update board set good = good+? where idx=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			res = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("SQL구문 오류 : " +e.getMessage());
-		} finally {
-			pstmtClose();
-		}
-		return res;
-	}
-//	좋아요 수 1씩 감소 시키기(중복 허용)
-	public int setBoardGoodCheckMinus(int idx) {
-		int res = 0;
-		try {
-			sql = "update board set good = good-1 where idx=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idx);
+			pstmt.setInt(1, goodCnt);
+			pstmt.setInt(2, idx);
 			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL구문 오류 : " +e.getMessage());
@@ -239,6 +227,65 @@ public class BoardDAO {
 			pstmtClose();
 		}
 		return res;
+	}
+
+//	검색기를 활용한 검색 자료 출력
+	public ArrayList<BoardVO> getBoardContentSearch(String search, String searchString) {
+		ArrayList<BoardVO> vos = new ArrayList<BoardVO>();
+		try {
+			sql = "select *,timestampdiff(hour,wDate, now()) as hour_diff from board where "+search+" like ? order by idx desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchString+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo = new BoardVO();
+				vo.setIdx(rs.getInt("idx"));
+				vo.setMid(rs.getString("mid"));
+				vo.setNickName(rs.getString("nickName"));
+				vo.setTitle(rs.getString("title"));
+				vo.setEmail(rs.getString("email"));
+				vo.setHomePage(rs.getString("homePage"));
+				vo.setContent(rs.getString("content"));
+				vo.setReadNum(rs.getInt("readNum"));
+				vo.setHostIp(rs.getString("hostIp"));
+				vo.setOpenSw(rs.getString("openSw"));
+				vo.setwDate(rs.getString("wDate"));
+				vo.setGood(rs.getInt("good"));
+				
+				vo.setHour_diff(rs.getInt("hour_diff"));
+				
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류 : " +e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return vos;
+	}
+
+	public BoardVO getPreNextSearch(int idx, String str) {
+		vo = new BoardVO();
+		try {
+			if(str.equals("preVo")) {
+				sql = "select idx,title from board where idx < ? order by idx desc limit 1";
+			}
+			else {
+				sql = "select idx,title from board where idx > ? order by idx limit 1";
+			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo.setIdx(rs.getInt("idx"));
+				vo.setTitle(rs.getString("title"));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL구문 오류 : " +e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return vo;
 	}
 
 

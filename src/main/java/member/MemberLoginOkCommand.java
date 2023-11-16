@@ -73,7 +73,7 @@ public class MemberLoginOkCommand implements MemberInterface {
 			
 			//long diffDate = (date1.getDate() - date2.getDate());	// 날짜차이가 일수로 계산...
 			long diffDate = (today2.getTime() - date2.getTime()) / (60*60*24*1000);	// 날짜차이가 일수로 계산...
-			System.out.println("가입후 지난 날짜 : " + diffDate);
+//			System.out.println("가입후 지난 날짜 : " + diffDate);
 			if(vo.getLevel()==1 && diffDate <= 10 && vo.getVisitCnt() >= 5) vo.setLevel(2); 
 		} catch (ParseException e) {
 			e.printStackTrace();

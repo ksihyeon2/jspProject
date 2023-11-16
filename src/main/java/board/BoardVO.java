@@ -15,7 +15,10 @@ public class BoardVO {
 	private int good;
 	
 	private int hour_diff;  // 게시글 24시간동안 new.gif 이미지 표시를 위한 변수
-
+	private int date_diff;	// 게시글이 1일 이전인지 체크하기 위한 변수
+	
+	private int replyCnt;  // 게시글 댓글 갯수 구하기 위한 변수3
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -94,10 +97,23 @@ public class BoardVO {
 	public void setHour_diff(int hour_diff) {
 		this.hour_diff = hour_diff;
 	}
+	public int getDate_diff() {
+		return date_diff;
+	}
+	public void setDate_diff(int date_diff) {
+		this.date_diff = date_diff;
+	}
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [idx=" + idx + ", mid=" + mid + ", nickName=" + nickName + ", title=" + title + ", email=" + email
 				+ ", homePage=" + homePage + ", content=" + content + ", readNum=" + readNum + ", hostIp=" + hostIp
-				+ ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + ", hour_diff=" + hour_diff + "]";
+				+ ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + ", hour_diff=" + hour_diff + ", date_diff="
+				+ date_diff + ", replyCnt=" + replyCnt + "]";
 	}
 }

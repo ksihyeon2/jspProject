@@ -75,6 +75,9 @@
 					   <div class="dropdown-menu">
 					     <a class="dropdown-item" href="fileUpload1.st">싱글파일 업로드1</a>
 					     <a class="dropdown-item" href="fileUpload2.st">싱글파일 업로드2</a>
+					     <a class="dropdown-item" href="fileUpload3.st">멀티파일 업로드1</a>
+					     <a class="dropdown-item" href="fileUpload4.st">멀티파일 업로드2</a>
+					     <a class="dropdown-item" href="fileDownload.st">다운로드 이동</a>
 					   </div>
 					 </div>
 		     </li>  

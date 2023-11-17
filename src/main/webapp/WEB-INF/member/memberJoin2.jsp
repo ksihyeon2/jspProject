@@ -98,23 +98,6 @@
     		submitFlag = 1;
     	}
     	
-    	// 사진 업로드 확인
-	    let fName = document.getElementById("file").value;
-	    let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
-	   	let maxSize = 1024 * 1024 * 5;
-	   	
-	   	if(fName.trim() == "") {
-	   		fName = "noimage.jpg";
-    	}
-	    	
-	    	// 파일 업로드 확장자 확인
-	    let fileSize = document.getElementById("file").files[0].size;
-	    if(ext != 'jpg' && ext != 'gif' && ext != 'png') {
-	   		alert("업로드 가능한 사진의 확장자는 'jpg/gif/png'만 가능합니다.");
-	   	} else if (fileSize > maxSize) {
-    		alert("업로드 가능한 파일의 용량을 초과하셨습니다. 5MByte이하로 업로드 해주세요.");
-	    }
-    	
     	// 전송전에 '주소'를 하나로 묶어서 전송처리 준비한다.
     	let postcode = myform.postcode.value + " ";
     	let roadAddress = myform.roadAddress.value + " ";
@@ -133,10 +116,10 @@
     			document.getElementById("nickNameBtn").focus();
     		}
     		else {
-    			myform.email.value = email;
-			   	myform.tel.value = tel;
-			   	
-			   	myform.submit();
+	    		myform.email.value = email;
+	    		myform.tel.value = tel;
+	    		
+		    	myform.submit();
     		}
     	}
     	else {
@@ -175,7 +158,6 @@
     		myform.nickName.readOnly = true;
     		window.open(url,"nWin","width=580px,height=250px");
     	}
-    	
     }
     
   </script>
@@ -184,7 +166,7 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <form name="myform" method="post" action="${ctp}/memberJoinOk.mem" class="was-validated" enctype="multipart/form-data">
+  <form name="myform" method="post" action="${ctp}/memberJoinOk.mem" class="was-validated">
     <h2>회 원 가 입</h2>
     <br/>
     <div class="form-group">

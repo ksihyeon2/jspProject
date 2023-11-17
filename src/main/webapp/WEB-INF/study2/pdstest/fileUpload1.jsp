@@ -32,6 +32,22 @@
 				myform.submit();
 			}
 		}
+		
+		/* 선택된 그림 미리보기 */
+		function imgCheck(e) {
+			/* e.files : 해당 값에 파일이 있는지 확인 */
+			if(e.files && e.files[0]) {
+				/* 화면에 그림을 출력하기 위한 FileReader 객체 생성 */
+			  let reader = new FileReader();
+				reader.onload = function(e) {
+					document.getElementById("demo").src = e.target.result;
+				}
+				/* 해당 파일의 정보를 URL에 저장해 reader에 담아야 화면에 출력 가능 */
+				reader.readAsDataURL(e.files[0]);
+			} else {
+					document.getElementById("demo").src = "";				
+			}
+		}
 	</script>	
 </head>
 <body>
@@ -42,12 +58,16 @@
 		<p>COS라이브러리를 이용한 파일 업로드</p>
 		<div>(http://www.servlets.com/cos/)</div>
 		<hr />
-		<!-- <form name="myform" method="post" action="fileUpload1Ok.st" enctype="multipart/form-data"> -->
-		<form name="myform" method="post" action="fileUpload1Ok.st">
+		<form name="myform" method="post" action="fileUpload1Ok.st" enctype="multipart/form-data">
+		<!-- multipart/form-data로 파일을 업로드 하면 파일명이 서버에 저장되어 보내지기 때문에 이름이 넘어가지 않음 -->
 			파일명 : 
-			<input type="file" name="fName" id="file" class="form-control-file mb-3 border" />
-			<input type="button" value="전송" onclick="fCheck()" class="btn btn-success form-control" />
+			<input type="file" name="fName" id="file" onchange="imgCheck(this)" class="form-control-file mb-3 border" />
+			<input type="button" value="전송" onclick="fCheck()" class="btn btn-success form-control mb-3" />
 		</form>
+		<!-- 이미지 한개는 img 태그로 출력 -->
+		<img id="demo" width="200px" />
+		<hr />
+		<div><a href="fileDownload.st">다운로드로 이동하기</a></div>
 	</div>
 	<p><br /></p>
 	<jsp:include page="/include/footer.jsp"></jsp:include>

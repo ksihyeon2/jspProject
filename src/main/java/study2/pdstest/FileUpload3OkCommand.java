@@ -24,7 +24,6 @@ public class FileUpload3OkCommand implements StudyInterface {
 		MultipartRequest multipartRequest = new MultipartRequest(request, realPath, maxSize, encoding, new DefaultFileRenamePolicy());
 		
 		// 업로드 된 파일의 정보 추출
-		
 //		열거형 자료 enumeration으로 담기
 		Enumeration fileNames = multipartRequest.getFileNames();
 		

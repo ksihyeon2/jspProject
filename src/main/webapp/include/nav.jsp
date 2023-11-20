@@ -49,19 +49,21 @@
 	     <c:if test="${level <= 4}">
 		     <li class="nav-item">
 		       <a class="nav-link" href="boardList.bo">Board</a>
-		      </li>
-		     <li class="nav-item">
-		       <a class="nav-link" href="${ctp}/PdsList">Pds</a>
-		     </li>    
+		     </li>
+		     <c:if test="${level != 1}">
+		     	<li class="nav-item">
+		      	<a class="nav-link" href="pdsList.pds">Pds</a>
+		     	</li>    
+		     </c:if>
 		     <li class="nav-item ml-3 mr-3">
 		     	 <div class="dropdown">
 					   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Study1</button>
 					   <div class="dropdown-menu">
 					     <a class="dropdown-item" href="${ctp}/study/password/passForm.jsp">암호화 연습</a>
 					     <a class="dropdown-item" href="${ctp}/mapping/test1">디렉토리패턴 매핑 연습</a>
-					     <a class="dropdown-item" href="${ctp}/mapping/test5.do">확장자 패턴</a>
-					     <a class="dropdown-item" href="${ctp}/mapping2/test5.re">확장자 패턴2</a>
-					     <a class="dropdown-item" href="${ctp}/login/login.lo">로그인 연습</a>
+					     <a class="dropdown-item" href="test5.do">확장자 패턴</a>
+					     <a class="dropdown-item" href="test5.re">확장자 패턴2</a>
+					     <a class="dropdown-item" href="login.lo">로그인 연습</a>
 					     <a class="dropdown-item" href="ajaxTest1.st">AJax 연습1</a>
 					     <a class="dropdown-item" href="userList.us">AJax 연습2</a>
 					     <a class="dropdown-item" href="login.alo">AJax연습3</a>

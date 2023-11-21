@@ -37,3 +37,17 @@ desc member;
 select * from member;
 
 select *, timestampdiff(day, lastDate, now()) as data from member order by idx desc limit 0,5;
+
+
+
+/* 실시간 DB 채팅 테이블 설계 */
+create table memberChat (
+	idx 			int not null auto_increment primary key,
+	nickName 	varchar(30) not null,
+	chat			varchar(100) not null
+);
+desc memberChat;
+
+select * from memberChat order by idx desc limit 50;
+
+

@@ -19,6 +19,7 @@ public class PdsVO {
 	private int hour_diff;
 	private int date_diff;
 	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -115,7 +116,7 @@ public class PdsVO {
 	public void setDate_diff(int date_diff) {
 		this.date_diff = date_diff;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PdsVO [idx=" + idx + ", mid=" + mid + ", nickName=" + nickName + ", fName=" + fName + ", fSName=" + fSName

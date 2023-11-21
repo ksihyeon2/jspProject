@@ -116,11 +116,16 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/mInfor.jsp";
 		}
-		else if(com.equals("/complaintInput")) {
-			command = new ComplaintInputCommand();
+		else if(com.equals("/memberMessageInput")) {
+			command = new MemberMessageInputCommand();
 			command.execute(request, response);
-			viewPage += "complaintInput.jsp";
+			return;
 		}
+		/*
+		 * else if(com.equals("/complaintInput")) { command = new
+		 * ComplaintInputCommand(); command.execute(request, response); viewPage +=
+		 * "complaintInput.jsp"; }
+		 */
 		
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}

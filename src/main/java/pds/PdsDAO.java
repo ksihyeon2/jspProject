@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import admin.review.ReviewVO;
 import common.GetConn;
 
 public class PdsDAO {
@@ -36,19 +37,27 @@ public class PdsDAO {
 		pstmtClose();
 	}
 
-//	자료실 전체 리스트
-	public ArrayList<PdsVO> getPdsList(String part) {
+//자료실 전체(part) 리스트
+	public ArrayList<PdsVO> getPdsList(int startIndexNo, int pageSize, String part) {
 		ArrayList<PdsVO> vos = new ArrayList<PdsVO>();
 		try {
 			if(part.equals("전체")) {
-				sql = "select *,datediff(fDate,now()) as date_diff, timestampdiff(hour,fDate,now()) as hour_diff from pds order by idx desc";
+				sql = "select *,datediff(fDate, now()) as date_diff, timestampdiff(hour,fDate, now()) as hour_diff "
+						+ "from pds order by idx desc limit ?,?";
 				pstmt = conn.prepareStatement(sql);
-			} else {
-				sql = "select *,datediff(fDate,now()) as date_diff, timestampdiff(hour,fDate,now()) as hour_diff from pds where part=? order by idx desc";
+				pstmt.setInt(1, startIndexNo);
+				pstmt.setInt(2, pageSize);
+			}
+			else {
+				sql = "select *,datediff(fDate, now()) as date_diff, timestampdiff(hour,fDate, now()) as hour_diff "
+						+ "from pds where part = ? order by idx desc limit ?,?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, part);
+				pstmt.setInt(2, startIndexNo);
+				pstmt.setInt(3, pageSize);
 			}
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				vo = new PdsVO();
 				vo.setIdx(rs.getInt("idx"));
@@ -65,10 +74,9 @@ public class PdsDAO {
 				vo.setOpenSw(rs.getString("openSw"));
 				vo.setContent(rs.getString("content"));
 				vo.setHostIp(rs.getString("hostIp"));
-				vo.setHostIp(rs.getString("hostIp"));
 				
-				vo.setDate_diff(rs.getInt("date_diff"));  // 날짜 계산
-				vo.setHour_diff(rs.getInt("hour_diff"));  // 시간 계산
+				vo.setHour_diff(rs.getInt("hour_diff"));
+				vo.setDate_diff(rs.getInt("date_diff"));
 				
 				vos.add(vo);
 			}
@@ -167,4 +175,59 @@ public class PdsDAO {
 			pstmtClose();
 		}
 	}
+
+//총 레코드 건수 구하기
+	public int getTotRecCnt(String part) {
+		int totRecCnt = 0;
+		try {
+			if(part.equals("전체")) {
+				sql = "select count(*) as cnt from pds";
+				pstmt = conn.prepareStatement(sql);
+			}
+			else {
+				sql = "select count(*) as cnt from pds where part = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, part);
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			totRecCnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return totRecCnt;
+	}
+
+	
+//	리뷰 내역 리스트 가져오기
+	public ArrayList<ReviewVO> getReviewList(int idx, String part) {
+		ArrayList<ReviewVO> rVos = new ArrayList<ReviewVO>();
+		try {
+			sql = "select * from review where partIdx=? and part=? order by idx desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, part);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVO rVo = new ReviewVO();
+				rVo.setIdx(rs.getInt("idx"));
+				rVo.setPart(rs.getString("part"));
+				rVo.setPartIdx(rs.getInt("partIdx"));
+				rVo.setMid(rs.getString("mid"));
+				rVo.setStar(rs.getInt("star"));
+				rVo.setContent(rs.getString("content"));
+				rVo.setrDate(rs.getString("rDate"));
+				
+				rVos.add(rVo);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return rVos;
+	}
+
 }

@@ -22,3 +22,17 @@ desc pds;
 select * from pds order by idx desc;
 
 select *,datediff(fDate,now()) as date_diff, timestampdiff(hour,fDate,now()) as hour_diff from pds order by idx desc;
+
+
+/* 리뷰 테이블 */
+create table review(
+	idx 			int not null auto_increment,				/* 리뷰 고유 번호 */		
+	part			varchar(20) not null,								/* 분류 (board:게시판, 자료실:pds ..) */
+	partIdx		int not null,												/* 해당 분야의 고유 번호 */
+	mid				varchar(30) not null,								/* 리뷰 작성자 */
+	star			int not null default 0,							/* 별점 부여 점수 */
+	content		text,																/* 리뷰 내용 */
+	rDate			datetime default now()
+	primary key(idx)
+);
+desc review;

@@ -84,6 +84,16 @@ public class StudyController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+		else if(com.equals("/calendar1")) {
+			command = new Calendar1Command();
+			command.execute(request, response);
+			viewPage += "/calendar/calendar1.jsp";
+		}
+		else if(com.equals("/calendar2")) {
+			command = new Calendar2Command();
+			command.execute(request, response);
+			viewPage += "/calendar/calendar2.jsp";
+		}
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}
 }

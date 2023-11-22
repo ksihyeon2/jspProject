@@ -80,6 +80,8 @@
 					     <a class="dropdown-item" href="fileUpload3.st">멀티파일 업로드1</a>
 					     <a class="dropdown-item" href="fileUpload4.st">멀티파일 업로드2</a>
 					     <a class="dropdown-item" href="fileDownload.st">다운로드 이동</a>
+					     <a class="dropdown-item" href="calendar1.st">달력 연습1</a>
+					     <a class="dropdown-item" href="calendar2.st">달력 연습2</a>
 					   </div>
 					 </div>
 		     </li>  
@@ -88,6 +90,7 @@
 					   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">MyPage</button>
 					   <div class="dropdown-menu">
 					     <a class="dropdown-item" href="memberMain.mem">회원 메인창</a>
+					     <a class="dropdown-item" href="schedule.sc">일정관리</a>
 					     <a class="dropdown-item" href="memberPwdCheck.mem">회원 정보 수정</a>
 					     <c:if test="${sLevel != 1}"><a class="dropdown-item" href="mList.mem">회원 리스트</a></c:if>
 					     <a class="dropdown-item" href="javascript:memberDelCheck()">회원 탈퇴</a>

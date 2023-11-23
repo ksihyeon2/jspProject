@@ -23,5 +23,16 @@ insert into schedule values (default,'rose1234','2023-11-15','여행','주말 �
 insert into schedule values (default,'rose1234','2023-11-22','학습','프로젝트 점검');
 
 select * from schedule;
+select * from schedule order by sDate, part;
 
-select * from schedule where mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' order by sDate;
+select * from schedule where mid='admin' and date_format(sDate, '%Y-%m-%d') = '2023-11-01'order by sDate, part;
+select * from schedule where mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' order by sDate, part;
+
+/* 그룹화 시키기 */
+select distinct sDate, count(*) as cnt from schedule sDate where mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' order by sDate, part; 
+
+select * from schedule where mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' order by sDate, part;
+
+select * from schedule where  mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' order by sDate, part;
+select * from schedule where  mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' order by sDate, part;
+select *, count(*) as partCnt from schedule where mid='admin' and date_format(sDate, '%Y-%m') = '2023-11' group by sDate,part order by sDate,part;

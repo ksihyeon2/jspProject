@@ -42,13 +42,14 @@
 			
 			$("#scheduleInputClose").show();
 			$("#scheduleInputView").hide();
+			/* $("#demo").slideDown(1000); */
 			$("#demo").html(str);
 		}
 		
 		function scheduleInputClose() {
 			$("#scheduleInputClose").hide();
 			$("#scheduleInputView").show();
-			$("#scheduleInputForm").hide();
+			$("#scheduleInputForm").slideUp(500);
 		}
 		
 		/* 일정 등록하기 */
@@ -195,7 +196,8 @@
 				<input type="button" value="일정등록" onclick="scheduleInputView()" id="scheduleInputView" class="btn btn-success" />
 				<input type="button" value="닫기" onclick="scheduleInputClose()" id="scheduleInputClose" class="btn btn-primary" />
 			</div>
-			<div><input type="button" value="돌아가기" onclick="location.href='schedule.sc';" class="btn btn-warning" /></div>
+			<c:set var="ymds" value="${fn:split(ymd,'-')}"/>
+			<div><input type="button" value="돌아가기" onclick="location.href='schedule.sc?yy=${ymds[0]}&mm=${ymds[1]-1}&dd=${ymds[2]}';" class="btn btn-warning" /></div>
 		</div>
 		<div id="demo"></div>
 		<hr />
